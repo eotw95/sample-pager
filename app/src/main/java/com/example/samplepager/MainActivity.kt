@@ -23,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.samplepager.ui.theme.SamplePagerTheme
 import com.google.accompanist.pager.HorizontalPagerIndicator
@@ -64,7 +65,8 @@ fun pager() {
                 Row {
                     tabs.forEach {
                         Box(
-                            modifier = Modifier.width(100.dp)
+                            modifier = Modifier.width(100.dp),
+                            contentAlignment = Alignment.Center
                         ) {
                             Text(
                                 text = it
@@ -81,9 +83,11 @@ fun pager() {
                     HorizontalPagerIndicator(
                         pagerState = pager,
                         pageCount = count,
-                        indicatorWidth = 30.dp,
+                        indicatorWidth = 100.dp,
                         indicatorHeight = 3.dp,
-                        spacing = 70.dp
+                        spacing = 0.dp,
+                        inactiveColor = Color.Transparent,
+//                        modifier = Modifier.padding(start = 20.dp)
                     )
                 }
             }
