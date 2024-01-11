@@ -4,15 +4,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -55,27 +59,33 @@ fun pager() {
             modifier = Modifier.align(Alignment.Start)
         ) {
             Column {
+                Divider(thickness = 0.5.dp)
+                Spacer(modifier = Modifier.padding(vertical = 5.dp))
                 Row {
                     tabs.forEach {
-                        Text(
-                            text = it,
-//                            modifier = Modifier.padding(end = 65.dp)
-                            modifier = if (it == "Hatena") {
-                                Modifier.padding(start = 10.dp).padding(end = 65.dp)
-                            } else {
-                                Modifier.padding(end = 65.dp)
-                            }
-                        )
+                        Box(
+                            modifier = Modifier.width(100.dp)
+                        ) {
+                            Text(
+                                text = it
+                            )
+                        }
                     }
                 }
-                HorizontalPagerIndicator(
-                    pagerState = pager,
-                    pageCount = count,
-                    indicatorWidth = 30.dp,
-                    indicatorHeight = 1.dp,
-                    spacing = 70.dp,
-                    modifier = Modifier.padding(start = 20.dp)
-                )
+                Spacer(modifier = Modifier.padding(vertical = 5.dp))
+                Surface {
+                    Divider(
+                        thickness = 0.5.dp,
+                        modifier = Modifier.offset(y = 2.dp)
+                    )
+                    HorizontalPagerIndicator(
+                        pagerState = pager,
+                        pageCount = count,
+                        indicatorWidth = 30.dp,
+                        indicatorHeight = 3.dp,
+                        spacing = 70.dp
+                    )
+                }
             }
         }
         Spacer(modifier = Modifier.padding(vertical = 30.dp))
